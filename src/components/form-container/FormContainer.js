@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import './formContainerStyles.css';
 import StudentRegistrationForm from '../forms/student-registration-form/StudentRegistrationForm';
+import ParentRegistrationForm from '../forms/parent-registration-form/ParentRegistrationForm';
 
 class FormContainer extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      showRegistrationForm: true
+      showStudentForm: true
     }
   }
 
   toggleForms() {
-    console.log('test');
     this.setState({
-      showRegistrationForm: !this.state.showRegistrationForm
+      showStudentForm: !this.state.showStudentForm
     })
   }
 
@@ -24,10 +24,14 @@ class FormContainer extends Component {
         <h2>Register an account</h2>
         <p>Create an account to continue booking with Agnes!</p>
         <div>
-          <button className="contactTypeButton active" onClick={this.toggleForms.bind(this)}>Register as a student</button>
-          <button className="contactTypeButton" onClick={this.toggleForms.bind(this)}>Register as a parent</button>
+          <button
+            className={`contactTypeButton ${this.state.showStudentForm ? 'active' : ''}`}
+            onClick={this.toggleForms.bind(this)}>Register as a student</button>
+          <button
+            className={`contactTypeButton ${!this.state.showStudentForm ? 'active' : ''}`}
+            onClick={this.toggleForms.bind(this)}>Register as a parent</button>
         </div>
-        {this.state.showRegistrationForm ? <StudentRegistrationForm></StudentRegistrationForm> : <p>Test</p>}
+        {this.state.showStudentForm ? <StudentRegistrationForm></StudentRegistrationForm> : <ParentRegistrationForm></ParentRegistrationForm>}
       </div>
     )
   }
