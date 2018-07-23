@@ -11,13 +11,22 @@ class ParentRegistrationForm extends Component {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      firstName: '',
-      lastName: '',
-      phone: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
-      location: ''
+      parentRegistrationDetails: {
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        location: ''
+      },
+      studentRegistrationDetails: {
+        firstName: '',
+        lastName: '',
+        phone: '',
+        location: ''
+      },
+      showStudentForm: false
     }
     this.inputStyle = {
       focus: {
@@ -40,113 +49,183 @@ class ParentRegistrationForm extends Component {
     }
   }
 
-  handleChange(event) {
-    let newState = {}
-    newState[event.target.name] = event.target.value;
-    this.setState(newState);
+  showParentRegistrationForm() {
+    this.setState({
+      showStudentForm: false
+    });
+    this.props.returnToParentDetails();
+  }
+
+  updateParentDetails(event) {
+    let previousState = {...this.state}; // create a copy of previous state
+    previousState.parentRegistrationDetails[event.target.name] = event.target.value; // update details
+    this.setState(previousState); // update state
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
+    this.setState({showStudentForm: true})
+    this.props.parentRegistrationComplete();
   }
 
   render() {
-    return(
-      <div className="reg-form-container">
-        <form className="registration-form" onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="form-group col">
-              <FloatingLabel
-                id='firstName'
-                name='firstName'
-                placeholder='FIRST NAME'
-                type='text'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.firstName}
-              />
+
+    if(this.state.showStudentForm) {
+      return(
+        <div className="reg-form-container">
+          <form className="registration-form" onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='firstName'
+                  name='firstName'
+                  placeholder='FIRST NAME'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.firstName}
+                />
+              </div>
+              <div className="form-group col">
+                <FloatingLabel
+                  id='lastName'
+                  name='lastName'
+                  placeholder='LAST NAME'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.lastName}
+                />
+              </div>
             </div>
-            <div className="form-group col">
-              <FloatingLabel
-                id='lastName'
-                name='lastName'
-                placeholder='LAST NAME'
-                type='text'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.lastName}
-              />
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='phone'
+                  name='phone'
+                  placeholder='PHONE'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.phone}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="form-group col">
-              <FloatingLabel
-                id='phone'
-                name='phone'
-                placeholder='PHONE'
-                type='text'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.phone}
-              />
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='location'
+                  name='location'
+                  placeholder='LOCATION'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.location}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="form-group col">
-              <FloatingLabel
-                id='email'
-                name='email'
-                placeholder='EMAIL'
-                type='email'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.email}
-              />
+            <button className="submit-button">Create student and login</button>
+          </form>
+          <p className="login-prompt" onClick={this.showParentRegistrationForm.bind(this)}><span>Back to my details</span></p>
+        </div>
+      )
+    } else {
+      return(
+        <div className="reg-form-container">
+          <form className="registration-form" onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='firstName'
+                  name='firstName'
+                  placeholder='FIRST NAME'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.firstName}
+                />
+              </div>
+              <div className="form-group col">
+                <FloatingLabel
+                  id='lastName'
+                  name='lastName'
+                  placeholder='LAST NAME'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.lastName}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="form-group col">
-              <FloatingLabel
-                id='password'
-                name='password'
-                placeholder='PASSWORD'
-                type='password'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.password}
-              />
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='phone'
+                  name='phone'
+                  placeholder='PHONE'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.phone}
+                />
+              </div>
             </div>
-            <div className="form-group col">
-              <FloatingLabel
-                id='confirmPassword'
-                name='confirmPassword'
-                placeholder='CONFIRM PASSOWRD'
-                type='password'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.confirmPassword}
-              />
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='email'
+                  name='email'
+                  placeholder='EMAIL'
+                  type='email'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.email}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="form-group col">
-              <FloatingLabel
-                id='location'
-                name='location'
-                placeholder='LOCATION'
-                type='text'
-                styles={this.inputStyle}
-                onChange={this.handleChange.bind(this)}
-                value={this.state.location}
-              />
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='password'
+                  name='password'
+                  placeholder='PASSWORD'
+                  type='password'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.password}
+                />
+              </div>
+              <div className="form-group col">
+                <FloatingLabel
+                  id='confirmPassword'
+                  name='confirmPassword'
+                  placeholder='CONFIRM PASSOWRD'
+                  type='password'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.confirmPassword}
+                />
+              </div>
             </div>
-          </div>
-          <button className="submit-button">Start booking online now</button>
-        </form>
-        <p className="login-prompt">Already have an account? <span>Sign in</span></p>
-      </div>
-    )
+            <div className="row">
+              <div className="form-group col">
+                <FloatingLabel
+                  id='location'
+                  name='location'
+                  placeholder='LOCATION'
+                  type='text'
+                  styles={this.inputStyle}
+                  onChange={this.updateParentDetails.bind(this)}
+                  value={this.state.location}
+                />
+              </div>
+            </div>
+            <button className="submit-button">Next Step (Student Details)</button>
+          </form>
+          <p className="login-prompt">Already have an account? <span>Sign in</span></p>
+        </div>
+      )
+    }
   }
 }
 

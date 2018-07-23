@@ -15,7 +15,11 @@
 .forms-container p {
   color: #7B7B7B;
   font-size: 17px;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
+}
+
+.registration-button-container {
+  margin-top: 40px;
 }
 
 .contactTypeButton {
