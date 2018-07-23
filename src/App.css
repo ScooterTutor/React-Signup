@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('./fonts/proxima-nova-5976a5009d19a.otf') format('opentype'), /* Super Modern Browsers */
+}
+
+html, body, #root, .signup-container {
+  height: 100%;
+}
+
+.signup-container {
+  font-family: 'Proxima Nova', sans-serif;
+}
