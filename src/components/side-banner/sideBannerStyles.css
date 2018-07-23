@@ -28,6 +28,7 @@
 
 .logo-container {
   padding: 20px;
+  padding-left: 40px;
 }
 
 .logo {
@@ -44,7 +45,7 @@
   position: relative;
   color: white;
   z-index: 10;
-  padding-left: 70px;
+  padding-left: 90px;
   margin-top: 200px;
 }
 

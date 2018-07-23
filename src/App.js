@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import SideBanner from './components/side-banner/SideBanner';
-import RegistrationForm from './components/forms/registration-form/RegistrationForm';
+import FormContainer from './components/form-container/FormContainer';
 
 class App extends Component {
   render() {
     return (
       <div className="signup-container row">
         <SideBanner></SideBanner>
-        <RegistrationForm></RegistrationForm>
+        <FormContainer></FormContainer>
       </div>
     );
   }

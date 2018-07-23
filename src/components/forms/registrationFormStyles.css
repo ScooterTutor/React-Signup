@@ -1,0 +1,50 @@
+.reg-form-container {
+}
+
+.registration-form {
+  margin-top: 40px;
+}
+
+.registration-form input {
+  border: none;
+  border-bottom: 2px solid rgba(112, 112, 112, 0.15);
+  width: 100%;
+  outline: none;
+}
+
+.registration-form input::placeholder {
+  color: rgba(112, 112, 112, 0.15);
+  text-transform: uppercase;
+}
+
+.registration-form {
+  text-align: left !important;
+}
+
+.submit-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 20px;
+  padding: 15px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  text-transform: uppercase;
+  background: rgba(65,181,231,1);
+  background: -moz-linear-gradient(-45deg, rgba(65,181,231,1) 0%, rgba(15,142,219,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(65,181,231,1)), color-stop(100%, rgba(15,142,219,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(65,181,231,1) 0%, rgba(15,142,219,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(65,181,231,1) 0%, rgba(15,142,219,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(65,181,231,1) 0%, rgba(15,142,219,1) 100%);
+  background: linear-gradient(135deg, rgba(65,181,231,1) 0%, rgba(15,142,219,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#41b5e7', endColorstr='#0f8edb', GradientType=1 );
+}
+
+.login-prompt {
+  color: black !important;
+}
+
+.login-prompt span {
+  color: #41B4E7;
+}
