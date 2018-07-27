@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './formContainerStyles.css';
 import StudentRegistrationForm from '../forms/student-registration-form/StudentRegistrationForm';
 import ParentRegistrationForm from '../forms/parent-registration-form/ParentRegistrationForm';
+import SignUpForm from '../forms/signup-form/SignUpForm';
 
 class FormContainer extends Component {
 
@@ -9,9 +10,25 @@ class FormContainer extends Component {
     super(props)
     this.state = {
       showStudentForm: true,
+      showLoginView: false,
       registeringAStudent: false,
       pageHeading: "Register an account",
       pageSubHeading: "Create an account to continue booking our tutors online!"
+    }
+  }
+
+  renderRegistrationButtons() {
+    if(!this.state.registeringAStudent && !this.state.showLoginView) {
+      return(
+        <div className="registration-button-container">
+          <button
+            className={`contactTypeButton ${this.state.showStudentForm ? 'active' : ''}`}
+            onClick={this.toggleForms.bind(this)}>Register as a student</button>
+          <button
+            className={`contactTypeButton ${!this.state.showStudentForm ? 'active' : ''}`}
+            onClick={this.toggleForms.bind(this)}>Register as a parent</button>
+        </div>
+      )
     }
   }
 
@@ -38,29 +55,55 @@ class FormContainer extends Component {
     })
   }
 
-  renderRegistrationButtons() {
-    if(!this.state.registeringAStudent) {
-      return(
-        <div className="registration-button-container">
-          <button
-            className={`contactTypeButton ${this.state.showStudentForm ? 'active' : ''}`}
-            onClick={this.toggleForms.bind(this)}>Register as a student</button>
-          <button
-            className={`contactTypeButton ${!this.state.showStudentForm ? 'active' : ''}`}
-            onClick={this.toggleForms.bind(this)}>Register as a parent</button>
-        </div>
-      )
+  toggleLoginRegister() {
+    if(this.state.showLoginView) {
+      this.setState({
+        showStudentForm: true,
+        showLoginView: false,
+        registeringAStudent: false,
+        pageHeading: "Register an account",
+        pageSubHeading: "Create an account to continue booking our tutors online!"
+      })
+    } else {
+      this.setState({
+        showStudentForm: false,
+        showLoginView: true,
+        registeringAStudent: false,
+        pageHeading: "Welcome Back",
+        pageSubHeading: "Fill out your email and password below to login"
+      })
     }
   }
 
   renderRegistrationForm() {
-    if(this.state.showStudentForm) {
+    if(this.state.showStudentForm && !this.state.showLoginView) {
       return <StudentRegistrationForm />
-    } else {
+    } else if(!this.state.showLoginView) {
       return(
         <ParentRegistrationForm
           parentRegistrationComplete={this.renderStudentSignup.bind(this)}
-          returnToParentDetails={this.renderParentRegistration.bind(this)}/>
+          returnToParentDetails={this.renderParentRegistration.bind(this)}
+        />
+      )
+    }
+  }
+
+  renderLoginView() {
+    if(this.state.showLoginView) {
+      return(
+        <SignUpForm />
+      )
+    }
+  }
+
+  renderPrompt() {
+    console.log(this.state.registeringAStudent)
+    if(!this.state.registeringAStudent) {
+      return(
+        <p className="login-prompt">
+          Already have an account?
+          <span onClick={this.toggleLoginRegister.bind(this)}>{this.state.showLoginView ? ' Sign up' : ' Sign in'}</span>
+        </p>  
       )
     }
   }
@@ -72,6 +115,8 @@ class FormContainer extends Component {
         <p>{this.state.pageSubHeading}</p>
         {this.renderRegistrationButtons()}
         {this.renderRegistrationForm()}
+        {this.renderLoginView()}
+        {this.renderPrompt()}
       </div>
     )
   }

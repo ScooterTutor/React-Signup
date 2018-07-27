@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../registrationFormStyles.css';
+import '../globalFormStyles.css';
 import FloatingLabel, {
   focusStyles,
   inputStyles,
@@ -71,8 +71,8 @@ class ParentRegistrationForm extends Component {
   render() {
     if(!this.state.showingStudentForm) {
       return(
-        <div className="reg-form-container">
-          <form className="registration-form" onSubmit={this.handleSubmit}>
+        <div className="ico-form-container">
+          <form className="ico-form" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="form-group col">
                 <FloatingLabel
@@ -162,13 +162,12 @@ class ParentRegistrationForm extends Component {
             </div>
             <button className="submit-button">Next Step (Student Details)</button>
           </form>
-          <p className="login-prompt">Already have an account? <span>Sign in</span></p>
         </div>
       )
     } else {
       return(
-        <div className="reg-form-container">
-          <form className="registration-form" onSubmit={this.handleSubmit}>
+        <div className="ico-form-container">
+          <form className="ico-form" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="form-group col">
                 <FloatingLabel

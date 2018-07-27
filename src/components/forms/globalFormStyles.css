@@ -1,24 +1,24 @@
-.reg-form-container {
+.ico-form-container {
   width: 70%;
 }
 
-.registration-form {
+.ico-form {
   margin-top: 40px;
 }
 
-.registration-form input {
+.ico-form input {
   border: none;
   border-bottom: 2px solid rgba(112, 112, 112, 0.15);
   width: 100%;
   outline: none;
 }
 
-.registration-form input::placeholder {
+.ico-form input::placeholder {
   color: rgba(112, 112, 112, 0.15);
   text-transform: uppercase;
 }
 
-.registration-form {
+.ico-form {
   text-align: left !important;
 }
 

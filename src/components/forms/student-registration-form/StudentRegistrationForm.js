@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../registrationFormStyles.css';
+import '../globalFormStyles.css';
 import FloatingLabel, {
   focusStyles,
   inputStyles,
@@ -53,8 +53,8 @@ class RegistrationForm extends Component {
 
   render() {
     return(
-      <div className="reg-form-container">
-        <form className="registration-form" onSubmit={this.handleSubmit}>
+      <div className="ico-form-container">
+        <form className="ico-form" onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="form-group col">
               <FloatingLabel
@@ -144,7 +144,6 @@ class RegistrationForm extends Component {
           </div>
           <button className="submit-button">Start booking online now</button>
         </form>
-        <p className="login-prompt">Already have an account? <span>Sign in</span></p>
       </div>
     )
   }
