@@ -6,7 +6,7 @@ import FloatingLabel, {
   labelStyles
 } from 'floating-label-react'
 
-class SignUpForm extends Component {
+class SignInForm extends Component {
   constructor(props) {
     super(props)
 
@@ -49,7 +49,7 @@ class SignUpForm extends Component {
 
   render() {
     return(
-      <div className="ico-form-container">
+      <div className="ico-form-container sign-in">
         <form className="ico-form" onSubmit={this.login.bind(this)}>
           <div className="row">
             <div className="form-group col">
@@ -84,4 +84,4 @@ class SignUpForm extends Component {
   }
 }
 
-export default SignUpForm;
+export default SignInForm;

@@ -6,12 +6,12 @@ import FloatingLabel, {
   labelStyles
 } from 'floating-label-react';
 
-class ParentRegistrationForm extends Component {
+class TutorRegistrationForm extends Component {
   constructor(props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props);
+
     this.state = {
-      parentRegistrationDetails: {
+      tutorDetails: {
         firstName: '',
         lastName: '',
         phone: '',
@@ -20,14 +20,11 @@ class ParentRegistrationForm extends Component {
         confirmPassword: '',
         location: ''
       },
-      studentRegistrationDetails: {
-        firstName: '',
-        lastName: '',
-        phone: '',
-        location: ''
+      tutorSkills: {
       },
       showSecondaryForm: false
     }
+
     this.inputStyle = {
       focus: {
         ...focusStyles,
@@ -56,14 +53,15 @@ class ParentRegistrationForm extends Component {
     this.props.returnToPrimaryForm();
   }
 
-  updateParentDetails(event) {
+  updateTutorDetails(event) {
     let previousState = {...this.state}; // create a copy of previous state
     previousState.parentRegistrationDetails[event.target.name] = event.target.value; // update details
     this.setState(previousState); // update state
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
+    console.log(this.state);
     this.setState({showSecondaryForm: true})
   }
 
@@ -71,7 +69,7 @@ class ParentRegistrationForm extends Component {
     if(!this.state.showSecondaryForm) {
       return(
         <div className="ico-form-container">
-          <form className="ico-form" onSubmit={this.handleSubmit}>
+          <form className="ico-form" onSubmit={this.handleSubmit.bind(this)}>
             <div className="row">
               <div className="form-group col">
                 <FloatingLabel
@@ -80,8 +78,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='FIRST NAME'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.firstName}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.firstName}
                 />
               </div>
               <div className="form-group col">
@@ -91,8 +89,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='LAST NAME'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.lastName}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.lastName}
                 />
               </div>
             </div>
@@ -104,8 +102,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='PHONE'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.phone}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.phone}
                 />
               </div>
             </div>
@@ -117,8 +115,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='EMAIL'
                   type='email'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.email}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.email}
                 />
               </div>
             </div>
@@ -130,8 +128,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='PASSWORD'
                   type='password'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.password}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.password}
                 />
               </div>
               <div className="form-group col">
@@ -141,8 +139,8 @@ class ParentRegistrationForm extends Component {
                   placeholder='CONFIRM PASSOWRD'
                   type='password'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.confirmPassword}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.confirmPassword}
                 />
               </div>
             </div>
@@ -154,12 +152,12 @@ class ParentRegistrationForm extends Component {
                   placeholder='LOCATION'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
-                  value={this.state.location}
+                  onChange={this.updateTutorDetails.bind(this)}
+                  value={this.state.tutorDetails.location}
                 />
               </div>
             </div>
-            <button onClick={this.props.progressToSecondaryForm} className="submit-button">Student Details <i className="fas fa-long-arrow-alt-right fa-fw fa-sm"></i></button>
+            <button onClick={this.props.progressToSecondaryForm} className="submit-button">Subject details <i className="fas fa-long-arrow-alt-right fa-fw fa-sm"></i></button>
           </form>
         </div>
       )
@@ -175,7 +173,7 @@ class ParentRegistrationForm extends Component {
                   placeholder='FIRST NAME'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
+                  onChange={this.updateTutorDetails.bind(this)}
                   value={this.state.firstName}
                 />
               </div>
@@ -186,7 +184,7 @@ class ParentRegistrationForm extends Component {
                   placeholder='LAST NAME'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
+                  onChange={this.updateTutorDetails.bind(this)}
                   value={this.state.lastName}
                 />
               </div>
@@ -199,7 +197,7 @@ class ParentRegistrationForm extends Component {
                   placeholder='PHONE'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
+                  onChange={this.updateTutorDetails.bind(this)}
                   value={this.state.phone}
                 />
               </div>
@@ -212,7 +210,7 @@ class ParentRegistrationForm extends Component {
                   placeholder='LOCATION'
                   type='text'
                   styles={this.inputStyle}
-                  onChange={this.updateParentDetails.bind(this)}
+                  onChange={this.updateTutorDetails.bind(this)}
                   value={this.state.location}
                 />
               </div>
@@ -228,4 +226,4 @@ class ParentRegistrationForm extends Component {
   }
 }
 
-export default ParentRegistrationForm;
+export default TutorRegistrationForm

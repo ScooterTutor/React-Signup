@@ -1,4 +1,8 @@
 .ico-form-container {
+  width: 75%;
+}
+
+.ico-form-container.sign-in {
   width: 70%;
 }
 
