@@ -55,173 +55,180 @@ class TutorRegistrationForm extends Component {
 
   updateTutorDetails(event) {
     let previousState = {...this.state}; // create a copy of previous state
-    previousState.parentRegistrationDetails[event.target.name] = event.target.value; // update details
+    previousState.tutorDetails[event.target.name] = event.target.value; // update details
     this.setState(previousState); // update state
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state);
     this.setState({showSecondaryForm: true})
+  }
+
+  renderPrimaryForm() {
+    return(
+      <div className="ico-form-container">
+        <form className="ico-form" onSubmit={this.handleSubmit.bind(this)}>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='firstName'
+                name='firstName'
+                placeholder='FIRST NAME'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.firstName}
+              />
+            </div>
+            <div className="form-group col">
+              <FloatingLabel
+                id='lastName'
+                name='lastName'
+                placeholder='LAST NAME'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.lastName}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='phone'
+                name='phone'
+                placeholder='PHONE'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.phone}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='email'
+                name='email'
+                placeholder='EMAIL'
+                type='email'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.email}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='password'
+                name='password'
+                placeholder='PASSWORD'
+                type='password'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.password}
+              />
+            </div>
+            <div className="form-group col">
+              <FloatingLabel
+                id='confirmPassword'
+                name='confirmPassword'
+                placeholder='CONFIRM PASSOWRD'
+                type='password'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.confirmPassword}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='location'
+                name='location'
+                placeholder='LOCATION'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.tutorDetails.location}
+              />
+            </div>
+          </div>
+          <button onClick={this.props.progressToSecondaryForm} className="submit-button">Subject details <i className="fas fa-long-arrow-alt-right fa-fw fa-sm"></i></button>
+        </form>
+      </div>
+    )
+  }
+
+  renderSecondaryForm() {
+    return(
+      <div className="ico-form-container">
+        <form className="ico-form" onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='firstName'
+                name='firstName'
+                placeholder='FIRST NAME'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.firstName}
+              />
+            </div>
+            <div className="form-group col">
+              <FloatingLabel
+                id='lastName'
+                name='lastName'
+                placeholder='LAST NAME'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.lastName}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='phone'
+                name='phone'
+                placeholder='PHONE'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.phone}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col">
+              <FloatingLabel
+                id='location'
+                name='location'
+                placeholder='LOCATION'
+                type='text'
+                styles={this.inputStyle}
+                onChange={this.updateTutorDetails.bind(this)}
+                value={this.state.location}
+              />
+            </div>
+          </div>
+          <button className="submit-button">Complete Registration</button>
+        </form>
+        <p className="login-prompt" onClick={this.returnToPrimaryForm.bind(this)}>
+          <span>Back to my details</span>
+        </p>
+      </div>
+    )
   }
 
   render() {
     if(!this.state.showSecondaryForm) {
-      return(
-        <div className="ico-form-container">
-          <form className="ico-form" onSubmit={this.handleSubmit.bind(this)}>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='firstName'
-                  name='firstName'
-                  placeholder='FIRST NAME'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.firstName}
-                />
-              </div>
-              <div className="form-group col">
-                <FloatingLabel
-                  id='lastName'
-                  name='lastName'
-                  placeholder='LAST NAME'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.lastName}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='phone'
-                  name='phone'
-                  placeholder='PHONE'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.phone}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='email'
-                  name='email'
-                  placeholder='EMAIL'
-                  type='email'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.email}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='password'
-                  name='password'
-                  placeholder='PASSWORD'
-                  type='password'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.password}
-                />
-              </div>
-              <div className="form-group col">
-                <FloatingLabel
-                  id='confirmPassword'
-                  name='confirmPassword'
-                  placeholder='CONFIRM PASSOWRD'
-                  type='password'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.confirmPassword}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='location'
-                  name='location'
-                  placeholder='LOCATION'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.tutorDetails.location}
-                />
-              </div>
-            </div>
-            <button onClick={this.props.progressToSecondaryForm} className="submit-button">Subject details <i className="fas fa-long-arrow-alt-right fa-fw fa-sm"></i></button>
-          </form>
-        </div>
-      )
+      return this.renderPrimaryForm()
     } else {
-      return(
-        <div className="ico-form-container">
-          <form className="ico-form" onSubmit={this.handleSubmit}>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='firstName'
-                  name='firstName'
-                  placeholder='FIRST NAME'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.firstName}
-                />
-              </div>
-              <div className="form-group col">
-                <FloatingLabel
-                  id='lastName'
-                  name='lastName'
-                  placeholder='LAST NAME'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.lastName}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='phone'
-                  name='phone'
-                  placeholder='PHONE'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.phone}
-                />
-              </div>
-            </div>
-            <div className="row">
-              <div className="form-group col">
-                <FloatingLabel
-                  id='location'
-                  name='location'
-                  placeholder='LOCATION'
-                  type='text'
-                  styles={this.inputStyle}
-                  onChange={this.updateTutorDetails.bind(this)}
-                  value={this.state.location}
-                />
-              </div>
-            </div>
-            <button className="submit-button">Create student and login</button>
-          </form>
-          <p className="login-prompt" onClick={this.returnToPrimaryForm.bind(this)}>
-            <span>Back to my details</span>
-          </p>
-        </div>
-      )
+      return this.renderSecondaryForm()
     }
   }
 }

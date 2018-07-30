@@ -44,7 +44,6 @@ class SignInForm extends Component {
 
   login(event) {
     event.preventDefault();
-    console.log(this.state);
   }
 
   render() {

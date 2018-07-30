@@ -127,6 +127,7 @@ class FormContainer extends Component {
     }
     if (this.state.showParentForm) {
       return <ParentRegistrationForm
+        showSecondaryForm={this.state.showingSecondaryForm}
         progressToSecondaryForm={this.switchToSecondaryForm.bind(this, "Register a Student", "Please fill out the student's details below")}
         returnToPrimaryForm={this.returnToParentRegistration.bind(this)} />
     }

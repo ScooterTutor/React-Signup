@@ -33,6 +33,7 @@
   color: #41B4E7;
   cursor: pointer;
   outline: none !important;
+  background-color: white;
 }
 
 .contactTypeButton.active {
